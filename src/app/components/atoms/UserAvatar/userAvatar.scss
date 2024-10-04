@@ -1,0 +1,17 @@
+@import "../../../assets/sass/variables";
+
+.user-avatar {
+  display: flex;
+  flex-flow: row;
+  gap: $gap-mobile;
+  max-width: 200px;
+
+  &__initials {
+    border: 1px solid $gray-2;
+    border-radius: 15px;
+    background-color: $gray-2;
+    padding: 3px 2px;
+    font-size: $font-size-sm;
+    color: $gray-3;
+  }
+}

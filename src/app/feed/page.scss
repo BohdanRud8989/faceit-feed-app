@@ -1,0 +1,24 @@
+@import "../assets/sass/variables";
+
+.posts-feed {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: $gap-tablet;
+  padding: 16px 0;
+  max-height: 100%;
+  overflow-y: scroll;
+  scrollbar-width: none;
+
+  @media (min-width: $tablet-portrait) {
+    padding: 48px 0;
+  }
+
+  &__notification {
+    font-size: calc($font-size-xl / 1.5);
+
+    &--error {
+      color: $error;
+    }
+  }
+}

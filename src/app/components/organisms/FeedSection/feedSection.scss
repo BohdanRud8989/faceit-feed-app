@@ -1,0 +1,12 @@
+@import "../../../assets/sass/variables";
+
+.feed-section {
+  display: flex;
+  flex-flow: column;
+  gap: $gap-mobile;
+  height: 100%;
+
+  @media (min-width: $tablet-portrait) {
+    gap: $gap-tablet;
+  }
+}

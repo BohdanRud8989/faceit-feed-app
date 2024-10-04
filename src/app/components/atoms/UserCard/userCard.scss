@@ -1,0 +1,19 @@
+@import "../../../assets/sass/variables";
+
+.user-card {
+  display: flex;
+  flex-flow: row;
+  gap: $gap-mobile;
+  max-width: 200px;
+
+  &--portrait {
+    flex-flow: column;
+    align-items: center;
+  }
+
+  &__name {
+    text-transform: capitalize;
+    font-weight: 600;
+    color: $gray-2;
+  }
+}

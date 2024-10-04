@@ -1,0 +1,49 @@
+@import "variables";
+
+body {
+  font-family: Helvetica, sans-serif;
+  font-size: @font-size-sm;
+  color: @base-font-color;
+  background-color: @bg-color;
+
+  @media (min-width: @tablet-portrait) {
+    font-size: @base-font-size;
+  }
+
+  #root {
+    max-width: 1280px;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: calc(@font-size-xl / 1.5);
+  margin: 0;
+
+  @media (min-width: @tablet-portrait) {
+    font-size: @font-size-xl;
+  }
+}
+
+/*TODO remove later*/
+button {
+  font-size: @font-size-xs;
+  color: @light;
+  padding: 10px 20px;
+  border: 1px solid @border-color;
+  background-color: @accent-color;
+  cursor: pointer;
+
+  @media (min-width: @tablet-portrait) {
+    font-size: @font-size-sm;
+  }
+}

@@ -1,0 +1,26 @@
+@import "../../assets/sass/variables";
+
+.post-page {
+  display: flex;
+  flex-flow: column;
+  gap: $gap-tablet;
+
+  &__notification {
+    font-size: calc($font-size-xl / 1.5);
+
+    &--error {
+      color: $error;
+    }
+  }
+
+  &__back-btn {
+    &:hover,
+    :focus {
+      background-color: lighten($accent-color, 10%);
+    }
+
+    &__text {
+      text-transform: uppercase;
+    }
+  }
+}

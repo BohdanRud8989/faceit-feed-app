@@ -1,0 +1,17 @@
+@import "../../../assets/sass/variables";
+
+.header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: $gap-tablet;
+  height: 48px;
+  padding: 8px 16px;
+  background-color: rgb(31, 31, 31);
+
+  &__user-setting {
+    font-weight: 600;
+    color: $gray-1;
+  }
+}

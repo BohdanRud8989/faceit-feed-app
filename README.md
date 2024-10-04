@@ -1,33 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# This is a Next.js application that displays Posts feed and allows to navigate to particular post details.
 
-## Getting Started
+Features:
 
-First, run the development server:
+- Posts feed with infinite scroller
+- New posts are added by live data update
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Technologies Used:
+
+- Next.js (App router mode)
+- TypeScript
+- RTK Query as state-manager
+- sass
+- cx: classnames library(to display class list depending on conditions)
+
+## Initial setup
+
+Go to your project root folder and launch in terminal
+
+```
+nvm use
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configuration of the app:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+There is `.env` file, you can configure it.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+NEXT_PUBLIC_API_URL=your.api.url
+```
 
-## Learn More
+- to emulate live data - use this combination:
 
-To learn more about Next.js, take a look at the following resources:
+```
+NEXT_PUBLIC_EMULATE_LIVE_DATA=true
+NEXT_PUBLIC_LIVE_DATA_INTERVAL=5000
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Run in Development mode:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- build and run: `npm run dev`
+
+## Run in Production mode:
+
+- execute `npm run start`
+
+## Git default settings:
+
+- before each commit `prettier` will be run
 
 ## Deploy on Vercel
 
