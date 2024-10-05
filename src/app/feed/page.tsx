@@ -48,7 +48,9 @@ const PostsFeed = () => {
   }
   if (!posts?.length) {
     return (
-      <h6 className="posts-feed__notification">No posts found in the feed.</h6>
+      <h6 className="posts-feed__notification">
+        Your feed is empty. New interesting content is coming!
+      </h6>
     );
   }
 

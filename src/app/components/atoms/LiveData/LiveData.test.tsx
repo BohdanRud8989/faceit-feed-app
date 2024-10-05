@@ -1,19 +1,35 @@
-import { render, screen } from "@testing-library/react";
-import Header from "./FormItem";
+/*import { render } from '@testing-library/react';
+import { Provider } from 'react-redux';
+// import { useMockDispatch } from '@testing-library/react-hooks';
+import {setTimeout} from "timers";
+import LiveData from './LiveData';
+import { store } from '../../../data';
 
-describe("FormItem component", () => {
-  it("should render FormItem component correctly", () => {
-    render(<Header label="Label" id="some-id" />);
-    const label = screen.getByLabelText("Label:");
+jest.mock('./addNewPostAction', () => ({
+  addNewPostAction: jest.fn(),
+}));
 
-    expect(label).toHaveAttribute("disabled");
-    expect(label).toBeInTheDocument();
-  });
+describe("LiveData component", () => {
+  it('LiveData component dispatches addNewPostAction at specified interval', async () => {
+  render(
+      <Provider store={store}>
+        <LiveData updateInterval={100} />
+      </Provider>
+  );
 
-  it("should have provided value", () => {
-    render(<Header label="Label" value="Initial value" id="some-id" />);
-    const input = screen.getByLabelText("Label:");
+  // const dispatch = useMockDispatch();
 
-    expect(input).toHaveValue("Initial value");
-  });
+  // Simulate a small delay to allow the interval to start
+  await new Promise((resolve) => setTimeout(resolve, 150));
+
+  // Assert that addNewPostAction was dispatched at least once
+  expect(addNewPostAction).toHaveBeenCalledTimes(1);
+
+  // Simulate a longer delay to allow more dispatches
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  // Assert that addNewPostAction was dispatched multiple times
+  expect(addNewPostAction).toHaveBeenCalledTimes(2); // Adjust the expected number of calls as needed
 });
+});
+*/

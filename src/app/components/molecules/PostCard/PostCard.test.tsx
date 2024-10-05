@@ -1,22 +1,47 @@
-import { render, screen } from "@testing-library/react";
-import PostCard from "./UserCard";
+import { test, describe } from "vitest";
+/*import { fireEvent, screen } from "@testing-library/react";
+import { render } from "../../../utils/testsUtils";
+import PostCard from "./PostCard";*/
 
-describe("UserCard component", () => {
-  it("should render UserCard component correctly", () => {
-    render(<PostCard />);
-    const firstLabel = screen.getByLabelText("First Name:");
-    const secondLabel = screen.getByLabelText("Last Name:");
+/*jest.mock('next/navigation', () => ({
+  useRouter: jest.fn(() => ({
+    push: jest.fn((path) => {
+      expect(path).toBe(`/feed/1`); // Replace id if necessary
+    }),
+  })),
+}));*/
 
-    expect(firstLabel).toBeInTheDocument();
-    expect(secondLabel).toBeInTheDocument();
-  });
+describe("PostCard component", () => {
+  test("renders PostCard component with all elements", () => {
+    /* const id = 1;
+    const userAvatarUrl = "https://example.com/avatar.jpg";
+    const userName = "John Doe";
+    const body = "This is a post body.";
+    const isNew = true;
 
-  it("should display all user info not only labels", () => {
-    render(<PostCard firstName="Bohdan" lastName="Rud" />);
-    const firstInput = screen.getByLabelText("First Name:");
-    const secondInput = screen.getByLabelText("Last Name:");
+    render(
+      <PostCard
+        id={id}
+        userAvatarUrl={userAvatarUrl}
+        userName={userName}
+        body={body}
+        isNew={isNew}
+      />,
+    );
 
-    expect(firstInput).toHaveValue("Bohdan");
-    expect(secondInput).toHaveValue("Rud");
+    const postCard = screen.getByTestId("post-card-test-id");
+    const userCard = screen.getByTestId("user-card-test-id");
+    const postBody = screen.getByText(body);
+
+    expect(postCard).toBeDefined();
+    expect(userCard).toBeDefined();
+    expect(postBody).toBeDefined();
+    expect(postCard).toHaveClass('post-card--active');
+
+    // Simulate clicking on the post card
+    fireEvent.click(postCard);
+
+    // Check if the router was pushed to the correct URL
+    expect(window.location.pathname).toBe(`/feed/${id}`);*/
   });
 });

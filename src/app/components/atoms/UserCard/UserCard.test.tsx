@@ -1,22 +1,42 @@
 import { render, screen } from "@testing-library/react";
-import UserCard from "./LoginButton";
+import { expect, test, describe } from "vitest";
+import UserCard from "./UserCard";
 
-describe("LoginButton component", () => {
-  it("should render LoginButton component correctly", () => {
-    render(<UserCard> Login </UserCard>);
-    const element = screen.getByText("Login");
-    expect(element).toBeInTheDocument();
+describe("UserCard component", () => {
+  test("renders UserCard with image and name", () => {
+    const url = "https://example.com/avatar.jpg";
+    const name = "John Doe";
+
+    render(<UserCard avatarUrl={url} name={name} />);
+
+    const image = screen.getByRole("img");
+    const nameElement = screen.getByText(name);
+
+    expect(image).toBeDefined();
+    expect(image.src).toContain("example.com");
+    expect(nameElement).toBeDefined();
   });
 
-  it("should display loading state when the component is being loaded", () => {
-    render(<UserCard loading />);
-    const element = screen.getByText("Logging in...");
-    expect(element).toBeInTheDocument();
+  test("renders UserCard with initials and name", () => {
+    const name = "John Doe";
+
+    render(<UserCard name={name} />);
+
+    const initials = screen.getByText("JD");
+    const nameElement = screen.queryAllByText(name);
+
+    expect(initials).toBeDefined();
+    expect(nameElement).toBeDefined();
   });
 
-  it("should be disabled", () => {
-    render(<UserCard disabled />);
-    const button = screen.getByRole("button");
-    expect(button).toHaveAttribute("disabled");
+  test("renders UserCard in portrait mode", () => {
+    const url = "https://example.com/avatar.jpg";
+    const name = "John Doe";
+
+    render(<UserCard url={url} name={name} portrait />);
+
+    // Check if the user card element has the "user-card--portrait" class
+    const userCard = screen.getAllByTestId("user-card-test-id");
+    expect(userCard[0]).toHaveClass("user-card--portrait");
   });
 });

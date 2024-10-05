@@ -3,12 +3,12 @@
 .user-card {
   display: flex;
   flex-flow: row;
+  align-items: center;
   gap: $gap-mobile;
   max-width: 200px;
 
   &--portrait {
     flex-flow: column;
-    align-items: center;
   }
 
   &__name {

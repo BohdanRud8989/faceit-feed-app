@@ -55,7 +55,6 @@ const feedApi = createApi({
         } catch (err) {
           if (err instanceof Error) {
             console.warn("Error in getMorePosts query: ", err);
-            // TODO errorHandler(err);
           }
         }
       },

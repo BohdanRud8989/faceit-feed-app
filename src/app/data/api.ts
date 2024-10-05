@@ -5,14 +5,17 @@ import type { BaseQueryFn } from "@reduxjs/toolkit/query";
 import { FetchArgs } from "@reduxjs/toolkit/query/react";
 import { Endpoints } from "../utils";
 import { mockedPosts } from "./mocked";
-import { PAGE_OFFSET } from "../utils/";
+import { PAGE_OFFSET } from "../utils";
+import { app } from "../config";
 
 /**
  * Mocks all app endpoints to fake data
  * @returns {void}
  */
 export const mockApi = () => {
-  const mock = new MockAdapter(axios, { delayResponse: 2000 });
+  const mock = new MockAdapter(axios, {
+    delayResponse: app.mockedApiResponseDelay,
+  });
 
   mock
     .onGet(Endpoints.POST)

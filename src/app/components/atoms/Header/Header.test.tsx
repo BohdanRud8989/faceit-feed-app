@@ -1,11 +1,18 @@
 import { render, screen } from "@testing-library/react";
+import { expect, test, describe } from "vitest";
 import Header from "./Header";
 
 describe("Header component", () => {
-  it("should render Header component correctly", () => {
-    render(<Header label="Label" id="some-id" />);
-    const label = screen.getByLabelText("User setting");
+  test("should render Header component correctly", () => {
+    render(<Header />);
 
-    expect(label).toBeInTheDocument();
+    const headerElement = screen.getByRole("banner");
+    expect(headerElement).toBeDefined();
+
+    const logoImage = screen.getByRole("img", { name: "FACEIT logo" });
+    expect(logoImage).toBeDefined();
+
+    const userSettingLink = screen.getByRole("link", { name: "User setting" });
+    expect(userSettingLink).toBeDefined();
   });
 });

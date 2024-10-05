@@ -49,8 +49,7 @@ NEXT_PUBLIC_LIVE_DATA_INTERVAL=5000
 
 - before each commit `prettier` will be run
 
-## Deploy on Vercel
+## Run tests:
+Before run `npm run test` please execute(it's required since with packages installed Next.js unexpectedly doesn't build the app):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`npm install -D vitest @vitejs/plugin-react jsdom @testing-library/react @testing-library/dom`

@@ -1,13 +1,12 @@
+import { faker } from "@faker-js/faker";
 import { Post } from "../../types";
 
 const getMockedPost = (index: number) => ({
   id: index,
   isNew: false,
-  userAvatarUrl: "",
-  userName: "Bohdan Rud",
-  body:
-    "Bruno Fernandes sees red in game between Manchester United and Tottenham. " +
-    "Bruno Fernandes sees red in game between Manchester United and Tottenham",
+  userAvatarUrl: faker.image.avatar(),
+  userName: faker.person.fullName(),
+  body: faker.lorem.paragraph(5),
 });
 
 export const mockedPosts: Post[] = Array.from({ length: 25 }, (_, index) =>
@@ -15,6 +14,12 @@ export const mockedPosts: Post[] = Array.from({ length: 25 }, (_, index) =>
 );
 
 export const getRandomMockedPost = () => {
-  const randomIndex = Math.floor(Math.random() * 1000000);
-  return getMockedPost(randomIndex);
+  if (mockedPosts.length >= 10) {
+    const randomIndex = Math.floor(Math.random() * mockedPosts.length);
+    return mockedPosts[randomIndex];
+  }
+
+  const randomPost = getMockedPost(Math.floor(Math.random() * 10000));
+  mockedPosts.push(randomPost);
+  return randomPost;
 };

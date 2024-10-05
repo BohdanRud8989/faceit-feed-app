@@ -46,8 +46,8 @@ const PostCard = ({
         className,
       )}
       onClick={handleRedirectToPostPage}
+      data-testid="post-card-test-id"
     >
-      id {id} {/*TODO remove later*/}
       <UserCard avatarUrl={userAvatarUrl} name={userName} portrait={portrait} />
       <div className="post-card__content">
         <p

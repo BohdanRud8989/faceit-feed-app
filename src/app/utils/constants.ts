@@ -14,6 +14,6 @@ export const PAGE_OFFSET = 5;
 
 export const AVATAR_SIZES_MAP: Record<AvatarSizeType, number> = {
   small: 24,
-  mid: 36,
+  medium: 36,
   large: 48,
 };

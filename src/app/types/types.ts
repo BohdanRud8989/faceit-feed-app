@@ -14,4 +14,4 @@ export type GetPostsQueryArgs = {
   page: number;
 };
 
-export type AvatarSizeType = "small" | "mid" | "large";
+export type AvatarSizeType = "small" | "medium" | "large";

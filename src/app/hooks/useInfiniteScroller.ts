@@ -7,18 +7,21 @@ type InfiniteScrollerProps = {
   skip?: boolean;
 };
 
-// TODO
 /**
- * This hook calculates user engagement on component where it's used
+ * This hook attaches infinite scroller for exposed props: "containerRef", "loaderRef"
+ * and performs callback method call on each scroll
+ * @param {({ page }: GetPostsQueryArgs) => void} fetchMoreCallback - Callback to fetch more data
+ * @param {boolean} skip - Whether to skip scrolling
  * @example
- * // returns {isFocused: true, focusedTime: 60, totalTime: 80, engagementPercentage: '75', function(){...}}
- * useEngagementTracker();
+ * // returns {page: 1, containerRef: DOMrefObject, loaderRef: DOMrefObject}
+ * useInfiniteScroller({
+    fetchMoreCallback: getMoreItems,
+    skip: false,
+  }
  * @returns {{
-        isFocused: boolean,
-        focusedTime: number,
-        totalTime: number,
-        engagementPercentage: string,
-        resetTracker: () => void,
+        page: number,
+        containerRef: React.MutableRefObject,
+        loaderRef: React.MutableRefObject
     }}
  */
 export function useInfiniteScroller({

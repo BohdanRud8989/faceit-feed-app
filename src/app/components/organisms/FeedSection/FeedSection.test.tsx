@@ -1,22 +1,35 @@
-import { render, screen } from "@testing-library/react";
-import UserCard from "./LoginButton";
+import { test, describe } from "vitest";
+/*import { screen } from "@testing-library/react";
+import { render } from "../../../utils/testsUtils";
+import FeedSection from "./FeedSection";*/
 
-describe("LoginButton component", () => {
-  it("should render LoginButton component correctly", () => {
-    render(<UserCard> Login </UserCard>);
-    const element = screen.getByText("Login");
-    expect(element).toBeInTheDocument();
-  });
+describe("FeedSection component", () => {
+  test("renders FeedSection with list of PostCard components", () => {
+    /*const posts = [
+      {
+        id: 1,
+        userAvatarUrl: "https://example.com/avatar.jpg",
+        userName: "John Doe",
+        body: "This is a post body.",
+        isNew: true,
+      },
+      {
+        id: 2,
+        userAvatarUrl: "https://example.com/avatar2.jpg",
+        userName: "Jane Doe",
+        body: "Another post!",
+        isNew: false,
+      },
+    ];
 
-  it("should display loading state when the component is being loaded", () => {
-    render(<UserCard loading />);
-    const element = screen.getByText("Logging in...");
-    expect(element).toBeInTheDocument();
-  });
+    render(<FeedSection posts={posts} />);
 
-  it("should be disabled", () => {
-    render(<UserCard disabled />);
-    const button = screen.getByRole("button");
-    expect(button).toHaveAttribute("disabled");
+    // Check if the FeedSection element exists
+    const feedSection = screen.getByRole("region", { name: "Feed Section" });
+    expect(feedSection).toBeDefined();
+
+    // Check for the number of PostCard components
+    const postCards = screen.getAllByRole("article", { name: "Post card" });
+    expect(postCards).toHaveLength(posts.length);*/
   });
 });

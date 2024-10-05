@@ -26,11 +26,12 @@ const UserCard = ({
 }: UserCardProps) => (
   <section
     className={cx("user-card", { "user-card--portrait": portrait }, className)}
+    data-testid="user-card-test-id"
   >
     <UserAvatar
       url={avatarUrl}
       fullName={name}
-      size={portrait ? "large" : "small"}
+      size={portrait ? "large" : "medium"}
     />
     <span className="user-card__name">{name}</span>
   </section>

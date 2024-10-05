@@ -1,22 +1,33 @@
 import { render, screen } from "@testing-library/react";
-import UserCard from "./LoginButton";
+import { expect, test, describe } from "vitest";
+import UserAvatar from "./UserAvatar";
+import { AVATAR_SIZES_MAP } from "../../../utils";
 
-describe("LoginButton component", () => {
-  it("should render LoginButton component correctly", () => {
-    render(<UserCard> Login </UserCard>);
-    const element = screen.getByText("Login");
-    expect(element).toBeInTheDocument();
+describe("UserAvatar component", () => {
+  test("renders UserAvatar with initials", () => {
+    const fullName = "John Doe";
+    const size = "small";
+
+    render(<UserAvatar fullName={fullName} size={size} />);
+
+    const initials = screen.getByText("JD");
+    const image = screen.queryByRole("img");
+    expect(initials).toBeDefined();
+    expect(image).toBeNull();
   });
 
-  it("should display loading state when the component is being loaded", () => {
-    render(<UserCard loading />);
-    const element = screen.getByText("Logging in...");
-    expect(element).toBeInTheDocument();
-  });
+  test("renders UserAvatar with image", () => {
+    const url = "https://example.com/avatar.jpg";
+    const fullName = "John Doe";
+    const size = "large";
 
-  it("should be disabled", () => {
-    render(<UserCard disabled />);
-    const button = screen.getByRole("button");
-    expect(button).toHaveAttribute("disabled");
+    render(<UserAvatar url={url} fullName={fullName} size={size} />);
+
+    const image = screen.getByRole("img");
+    expect(image).toBeDefined();
+    expect(image.src).toContain("example.com");
+    expect(image.alt).toBe(`${fullName} avatar`);
+    expect(image.width).toBe(AVATAR_SIZES_MAP[size]);
+    expect(image.height).toBe(AVATAR_SIZES_MAP[size]);
   });
 });
