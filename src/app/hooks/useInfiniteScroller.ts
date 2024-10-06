@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { clearTimeout, setTimeout } from "timers";
 import { GetPostsQueryArgs } from "../types";
 import { DEFAULT_PAGE } from "../utils";
 
@@ -13,7 +14,7 @@ type InfiniteScrollerProps = {
  * @param {({ page }: GetPostsQueryArgs) => void} fetchMoreCallback - Callback to fetch more data
  * @param {boolean} skip - Whether to skip scrolling
  * @example
- * // returns {page: 1, containerRef: DOMrefObject, loaderRef: DOMrefObject}
+ * // returns {page: 1, containerRef: MutableRefObject, loaderRef: MutableRefObject}
  * useInfiniteScroller({
     fetchMoreCallback: getMoreItems,
     skip: false,
@@ -31,6 +32,7 @@ export function useInfiniteScroller({
   const [page, setPage] = useState(DEFAULT_PAGE);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const loaderRef = useRef<HTMLSpanElement | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
     const scrollContainerNode = containerRef.current;
@@ -58,11 +60,13 @@ export function useInfiniteScroller({
             intersectionRatio >= previousRatio &&
             (!previousY || y < previousY)
           ) {
-            const nextPage = page + 1;
-            setPage(nextPage);
-            fetchMoreCallback({
-              page: nextPage,
-            });
+            timeoutRef.current = setTimeout(() => {
+              const nextPage = page + 1;
+              setPage(nextPage);
+              fetchMoreCallback({
+                page: nextPage,
+              });
+            }, 500);
           }
           previousY = y;
           previousRatio = intersectionRatio;
@@ -73,7 +77,12 @@ export function useInfiniteScroller({
     const observer = new IntersectionObserver(listener, options);
     observer.observe(loaderNode);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, [page, skip, fetchMoreCallback]);
 
   return {

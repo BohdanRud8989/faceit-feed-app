@@ -36,6 +36,9 @@ const PostsFeed = () => {
       areMorePostsLoading ||
       morePosts?.length === 0,
   });
+  const hasMorePosts =
+    (isUninitialized && posts !== undefined && posts.length > 0) ||
+    (!isUninitialized && morePosts !== undefined && morePosts.length > 0);
 
   // Read and set previous scroll position once as component has been mounted
   useEffect(() => {
@@ -45,7 +48,7 @@ const PostsFeed = () => {
     }
 
     containerRef.current.scrollTo(0, prevScrollPosition);
-  }, [containerRef.current]);
+  }, [containerRef]);
 
   const debouncedScroll = useDebounce(
     (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
@@ -80,10 +83,7 @@ const PostsFeed = () => {
   return (
     <div className="posts-feed" ref={containerRef} onScroll={debouncedScroll}>
       <FeedSection posts={posts} />
-      {((isUninitialized && posts !== undefined && posts.length > 0) ||
-        (!isUninitialized &&
-          morePosts !== undefined &&
-          morePosts.length > 0)) && (
+      {hasMorePosts && (
         <span className="posts-feed__notification" ref={loaderRef}>
           Loading...
         </span>
