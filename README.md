@@ -3,15 +3,17 @@
 Features:
 
 - Posts feed with infinite scroller
-- New posts are added by live data update
+- New posts are added by live data update(highlighted in the green)
 
 Technologies Used:
 
 - Next.js (App router mode)
 - TypeScript
-- RTK Query as state-manager
+- RTK Query - as state-manager
 - sass
-- cx: classnames library(to display class list depending on conditions)
+- cx - classnames library(to display class list depending on conditions)
+- vitest - testing framework
+- faker-js - for mocked data
 
 ## Initial setup
 
@@ -48,9 +50,3 @@ NEXT_PUBLIC_LIVE_DATA_INTERVAL=5000
 ## Git default settings:
 
 - before each commit `prettier` will be run
-
-## Run tests:
-
-Before run `npm run test` please do following(it's required since with packages installed Next.js unexpectedly doesn't build the app):
-
-- `npm install -D jsdom @testing-library/dom`
