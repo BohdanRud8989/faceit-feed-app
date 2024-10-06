@@ -1,9 +1,6 @@
 import { AvatarSizeType } from "../types";
 
-export const JWT_TOKEN_KEY = "jwt";
-export const USER_ID_QUERY_VAR = 2;
 const BASE_API_PATH = "/api/v1";
-
 export enum Endpoints {
   POST = `${BASE_API_PATH}/post`,
   POSTS = `${BASE_API_PATH}/posts`,
@@ -17,3 +14,5 @@ export const AVATAR_SIZES_MAP: Record<AvatarSizeType, number> = {
   medium: 36,
   large: 48,
 };
+
+export const PREV_SCROLL_POSITION_KEY = "prevScrollPosition";

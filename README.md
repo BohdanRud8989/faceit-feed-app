@@ -50,6 +50,7 @@ NEXT_PUBLIC_LIVE_DATA_INTERVAL=5000
 - before each commit `prettier` will be run
 
 ## Run tests:
-Before run `npm run test` please execute(it's required since with packages installed Next.js unexpectedly doesn't build the app):
+Before run `npm run test` please do following(it's required since with packages installed Next.js unexpectedly doesn't build the app):
 
-`npm install -D vitest @vitejs/plugin-react jsdom @testing-library/react @testing-library/dom`
+- `npm install -D vitest @vitejs/plugin-react jsdom @testing-library/react @testing-library/dom`
+- uncomment content of `vitest.config.ts` file

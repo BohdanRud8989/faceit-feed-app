@@ -1,9 +1,14 @@
 "use client";
 
+import { useEffect } from "react";
 import { useGetPostsQuery, useGetMorePostsMutation } from "../data";
 import { FeedSection } from "../components";
-import { useInfiniteScroller } from "../hooks";
-import { DEFAULT_PAGE } from "../utils";
+import { useInfiniteScroller, useDebounce } from "../hooks";
+import {
+  DEFAULT_PAGE,
+  getPrevScrollPosition,
+  setPrevScrollPosition,
+} from "../utils";
 
 import "./page.scss";
 
@@ -32,6 +37,24 @@ const PostsFeed = () => {
       morePosts?.length === 0,
   });
 
+  // Read and set previous scroll position once as component has been mounted
+  useEffect(() => {
+    const prevScrollPosition = getPrevScrollPosition();
+    if (!prevScrollPosition || !containerRef.current) {
+      return;
+    }
+
+    containerRef.current.scrollTo(0, prevScrollPosition);
+  }, [containerRef.current]);
+
+  const debouncedScroll = useDebounce(
+    (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+      const { target }: React.BaseSyntheticEvent = e;
+      setPrevScrollPosition(target.scrollTop);
+    },
+    500,
+  );
+
   if (arePostsLoading) {
     return (
       <h6 className="posts-feed__notification">
@@ -55,7 +78,7 @@ const PostsFeed = () => {
   }
 
   return (
-    <div className="posts-feed" ref={containerRef}>
+    <div className="posts-feed" ref={containerRef} onScroll={debouncedScroll}>
       <FeedSection posts={posts} />
       {((isUninitialized && posts !== undefined && posts.length > 0) ||
         (!isUninitialized &&
